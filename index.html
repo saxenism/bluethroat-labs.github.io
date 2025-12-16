@@ -433,13 +433,13 @@
                 Trusted Execution Environments (TEEs) are a proven primitive that is now migrating into Web3. They have been used for years in security-critical systems like phones, payments, and embedded environments.
             </p>
             <p>
-                But in Web3, TEEs get held to a different bar. There is an inherent tension between hardware trust and the values of decentralisation and transparency. That tension does not go away by hand-waving it. You have to model it honestly, or risk compromising your protocol's standards and ethics.
+                But in Web3, TEEs get held to a different bar. There is an inherent tension between hardware trust and the values of decentralisation and transparency. That tension does not go away by hand-waving it. You either model it honestly, or it bites you in production.
             </p>
             <p>
-                At Bluethroat, we bridge that gap by teaching teams what TEEs really guarantee and what they do not, how they fail, and how to integrate them safely. We help protocols combine TEEs with other privacy-enhancing technologies (PETs) to build architectures that preserve Web3's core values without turning "TEE-backed" into a centralised/trust-me-bro claim.
+                At Bluethroat, we bridge that gap by teaching teams what TEEs really guarantee and what they do not, how they fail, and how to integrate them safely. We help protocols combine TEEs with other privacy-enhancing technologies (PETs) to build architectures that preserve Web3's core values without turning "TEE-backed" into a trust-me-bro claim.
             </p>
             <p>
-                We do this through our open-source <a href="https://docs.bluethroatlabs.com" target="_blank" rel="noopener noreferrer">TEE Security Handbook</a>, and our client work: audits, architecture reviews, and hands-on security consulting for teams shipping TEE-heavy systems.
+                We do this through our open-source <a href="https://docs.bluethroatlabs.com" target="_blank" rel="noopener noreferrer">TEE Security Handbook</a>, and our client work: audits, architecture reviews, and hands-on security consulting for teams shipping enclave-heavy systems.
             </p>
 
             <div class="button-group">
@@ -463,16 +463,16 @@
         <section id="mission">
             <h2>II. Our Mission</h2>
             <p>
-                Our mission is threefold, guiding every decision we make and every project we undertake:
+                At Bluethroat Labs, our mission is to accelerate the security maturity of Trusted Execution Environments (TEEs) in Web3. The smart contract ecosystem only became meaningfully safer once vulnerable patterns and hard-earned lessons were openly documented and best practices were widely internalized. Before that, security knowledge stayed trapped in isolated "security islands," slowing progress while attackers only needed to be right once.
             </p>
             <p>
-                <strong>Innovate:</strong> We push the boundaries of technology, exploring uncharted territories and developing solutions that address real-world challenges. Innovation isn't just about new ideas—it's about meaningful impact.
+                Today, the Web3 TEE landscape feels like a rewind to those early days: powerful tech, high stakes, and not enough shared security foundations. Bluethroat Labs exists to break this cycle.
             </p>
             <p>
-                <strong>Collaborate:</strong> We believe in the power of open collaboration. By working together with partners, contributors, and the broader community, we create solutions that are greater than the sum of their parts.
+                We identify, document, and openly share TEE failure modes, vulnerable patterns, and risky architectural assumptions through our living <a href="https://docs.bluethroatlabs.com" target="_blank" rel="noopener noreferrer">TEE Security Handbook</a>. In parallel, we work directly with teams through audits, architecture reviews, and hands-on guidance to help them design and ship robust, production-ready systems.
             </p>
             <p>
-                <strong>Empower:</strong> We build tools and systems that empower others. Our goal is to democratize access to technology, enabling anyone to build, create, and innovate alongside us.
+                Client engagements sustainably fund our public-good research so security insights reach the entire ecosystem faster. By bridging private expertise with open knowledge, we help the Web3 TEE space level up securely, together.
             </p>
         </section>
 
@@ -480,20 +480,20 @@
         <section id="work">
             <h2>III. Our Work</h2>
             <p>
-                We focus on projects that have the potential to create lasting positive change. Our work spans research, development, and deployment of cutting-edge technology.
+                We do three kinds of work. One is public, to raise the baseline for the entire ecosystem. The others are private, where we help teams find and fix real issues before attackers do.
             </p>
             <div class="work-list">
                 <div class="work-item">
-                    <h3>Research Initiatives</h3>
-                    <p>Deep explorations into emerging technologies, published openly for the benefit of the entire ecosystem.</p>
+                    <h3>The TEE Security Handbook</h3>
+                    <p>Our open-source public good. A living handbook that documents TEE failure modes, vulnerable patterns, and practical guidance for safely designing and deploying TEE-heavy Web3 systems.</p>
                 </div>
                 <div class="work-item">
-                    <h3>Open Source Projects</h3>
-                    <p>We believe in building in public. Our open-source contributions are available for anyone to use, study, and improve upon.</p>
+                    <h3>Confidential Bug Bounty Work</h3>
+                    <p>We do ongoing, private vulnerability research across TEE-backed protocols. Details stay confidential by default, but the security lessons and patterns eventually flow back into the ecosystem through the Handbook.</p>
                 </div>
                 <div class="work-item">
-                    <h3>Developer Tools</h3>
-                    <p>Practical tools and infrastructure that help developers build better, faster, and more reliably.</p>
+                    <h3>TEE Vulnerability Reasoning LLM</h3>
+                    <p>We are building a specialized LLM agent designed to reason about vulnerabilities in Web3 protocols that leverage TEEs in different roles and architectures. The goal is to accelerate threat modeling, surface risky assumptions early, and help teams converge on safer designs faster.</p>
                 </div>
             </div>
         </section>
@@ -502,23 +502,23 @@
         <section id="team">
             <h2>IV. Our Team</h2>
             <p>
-                We are a small but dedicated team of researchers and builders, united by a passion for technology and a commitment to making a difference.
+                We are a small but dedicated team of researchers and builders, united by a passion for security and a commitment to making TEE-backed systems safer.
             </p>
             <div class="team-grid">
                 <div class="team-member">
-                    <div class="team-avatar">AB</div>
-                    <h4>Alex Builder</h4>
-                    <p>Co-Founder & CEO</p>
+                    <div class="team-avatar">RS</div>
+                    <h4>Rahul Saxena</h4>
+                    <p>Founder · ex-ZKSync</p>
                 </div>
                 <div class="team-member">
-                    <div class="team-avatar">JR</div>
-                    <h4>Jordan Research</h4>
-                    <p>Head of Research</p>
+                    <div class="team-avatar">TG</div>
+                    <h4>Tanmay Goel</h4>
+                    <p>Researcher · ex-NVIDIA</p>
                 </div>
                 <div class="team-member">
-                    <div class="team-avatar">SK</div>
-                    <h4>Sam Kernel</h4>
-                    <p>Lead Engineer</p>
+                    <div class="team-avatar">AG</div>
+                    <h4>Abhimanyu Gupta</h4>
+                    <p>Researcher · Malware Analyst</p>
                 </div>
             </div>
         </section>
@@ -527,13 +527,13 @@
         <section id="join">
             <h2>V. Join Us</h2>
             <blockquote>
-                We're always looking for talented individuals who share our vision and want to make an impact.
+                We're always looking for people who take security seriously and enjoy going deep.
             </blockquote>
             <p>
-                If you're passionate about building innovative technology and want to be part of a team that values curiosity, collaboration, and excellence, we'd love to hear from you.
+                If you have real experience with TEEs, in Web3 or outside it, or you're the kind of person who likes tinkering, breaking systems, and learning new security paradigms, we'd love to hear from you.
             </p>
             <p>
-                Reach out to us at <a href="mailto:careers@bluethroatlabs.com">careers@bluethroatlabs.com</a> with a bit about yourself and why you'd like to join our team.
+                Email us at <a href="mailto:saxenism@bluethroatlabs.com"><strong>saxenism@bluethroatlabs.com</strong></a> with a short intro and what you've been working on.
             </p>
         </section>
     </main>
