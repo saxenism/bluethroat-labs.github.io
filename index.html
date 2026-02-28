@@ -1,605 +1,156 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bluethroat Labs</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --bg-primary: #fdfcfa;
-            --bg-secondary: #f5f3ef;
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --text-muted: #6b6b6b;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --border: #e5e5e5;
-            --shadow: rgba(0, 0, 0, 0.06);
-        }
+      :root {
+        --bg-primary: #0a0a0a;
+        --text-primary: #ffffff;
+      }
 
-        [data-theme="dark"] {
-            --bg-primary: #0f0f0f;
-            --bg-secondary: #1a1a1a;
-            --text-primary: #f5f5f5;
-            --text-secondary: #b0b0b0;
-            --text-muted: #888888;
-            --accent: #60a5fa;
-            --accent-hover: #93c5fd;
-            --border: #2a2a2a;
-            --shadow: rgba(0, 0, 0, 0.3);
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        font-family:
+          "Instrument Serif",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
 
-        html {
-            scroll-behavior: smooth;
-        }
+      .container {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+      }
 
-        body {
-            font-family: 'Crimson Pro', Georgia, serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
-            font-size: 18px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+      .background-banner {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+        object-position: center;
+        z-index: -1;
+        pointer-events: none;
+        user-select: none;
+        touch-action: none;
+      }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 2rem;
-            background: var(--bg-primary);
-            z-index: 100;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
+      .logo {
+        position: absolute;
+        top: 3rem;
+        left: 3rem;
+        height: 72px;
+        width: 72px;
+      }
 
-        nav.scrolled {
-            border-bottom-color: var(--border);
-            box-shadow: 0 2px 20px var(--shadow);
-        }
+      .coming-soon {
+        position: absolute;
+        top: calc(2 / 3 * 100%);
+        transform: translateY(-50%);
+        left: 3rem;
+        right: 4rem;
+        font-size: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
 
-        nav a {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        .theme-toggle {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            background: transparent;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--text-muted);
-            color: var(--text-primary);
-        }
-
-        /* Main content */
-        main {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 8rem 2rem 4rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            margin-bottom: 4rem;
-            padding-top: 2rem;
-        }
-
+      @media (max-width: 768px) {
         .logo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          top: 2rem;
+          left: 2rem;
+          height: 48px;
+          width: 48px;
         }
 
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+        .coming-soon {
+          left: 2rem;
+          right: 2rem;
+          font-size: 2.5rem;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 4rem;
         }
 
-        h1 {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
+        .coming-soon p:last-child {
+          margin-top: 3rem;
         }
 
-        .tagline {
-            font-style: italic;
-            color: var(--text-muted);
-            font-size: 1.1rem;
+        .hide-mobile {
+          display: none;
         }
-
-        /* Sections */
-        section {
-            margin-bottom: 4rem;
-        }
-
-        h2 {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        h3 {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        p:last-child {
-            margin-bottom: 0;
-        }
-
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        a:hover {
-            color: var(--accent-hover);
-            text-decoration: underline;
-        }
-
-        /* Blockquote for emphasis */
-        blockquote {
-            font-style: italic;
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            border-left: 3px solid var(--accent);
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        /* Buttons */
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .btn {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 0.85rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            color: white;
-            text-decoration: none;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            text-decoration: none;
-            transform: translateY(-2px);
-        }
-
-        /* Team grid */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .team-member {
-            padding: 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px var(--shadow);
-        }
-
-        .team-avatar {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--accent), #06b6d4);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 600;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .team-member h4 {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .team-member p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* Work items */
-        .work-list {
-            margin-top: 1.5rem;
-        }
-
-        .work-item {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .work-item:last-child {
-            border-bottom: none;
-        }
-
-        .work-item h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .work-item p {
-            margin: 0;
-            font-size: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--border);
-            margin-top: 4rem;
-        }
-
-        .footer-links {
-            font-family: 'DM Sans', sans-serif;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--accent);
-            margin: 0 0.75rem;
-            font-weight: 500;
-        }
-
-        .footer-links span {
-            color: var(--text-muted);
-        }
-
-        .copyright {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            nav {
-                padding: 1rem;
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            main {
-                padding: 7rem 1.5rem 3rem;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            .btn {
-                justify-content: center;
-            }
-        }
-
-        /* Smooth section reveals on scroll */
-        section {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        section:nth-child(1) { animation-delay: 0.1s; }
-        section:nth-child(2) { animation-delay: 0.2s; }
-        section:nth-child(3) { animation-delay: 0.3s; }
-        section:nth-child(4) { animation-delay: 0.4s; }
-        section:nth-child(5) { animation-delay: 0.5s; }
-        section:nth-child(6) { animation-delay: 0.6s; }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+      }
     </style>
-</head>
-<body>
-    <nav id="navbar">
-        <a href="#about">About</a>
-        <a href="#mission">Mission</a>
-        <a href="#work">Work</a>
-        <a href="https://docs.bluethroatlabs.com" target="_blank" rel="noopener noreferrer">Docs</a>
-        <a href="#join">Join Us</a>
-        <button class="theme-toggle" id="themeToggle">
-            <span id="themeIcon">☀</span> light mode
-        </button>
-    </nav>
+  </head>
 
-    <main>
-        <!-- Hero -->
-        <div class="hero">
-            <div class="logo">
-                <img src="logo.png" alt="Bluethroat Labs Logo">
-            </div>
-            <h1>Bluethroat Labs</h1>
-            <p class="tagline">Building the future, one innovation at a time</p>
-        </div>
+  <body>
+    <div class="container">
+      <img
+        src="background.png"
+        alt="background-banner"
+        class="background-banner"
+      />
 
-        <!-- About -->
-        <section id="about">
-            <h2>I. About</h2>
-            <blockquote>
-                Bluethroat Labs is a security research collective focused on making TEE-heavy Web3 protocols actually secure, robust, and reliable.
-            </blockquote>
-            <p>
-                Trusted Execution Environments (TEEs) are a proven primitive that is now migrating into Web3. They have been used for years in security-critical systems like phones, payments, and embedded environments.
-            </p>
-            <p>
-                But in Web3, TEEs get held to a different bar. There is an inherent tension between hardware trust and the values of decentralisation and transparency. That tension does not go away by hand-waving it. You either model it honestly, or it bites you in production.
-            </p>
-            <p>
-                At Bluethroat, we bridge that gap by teaching teams what TEEs really guarantee and what they do not, how they fail, and how to integrate them safely. We help protocols combine TEEs with other privacy-enhancing technologies (PETs) to build architectures that preserve Web3's core values without turning "TEE-backed" into a trust-me-bro claim.
-            </p>
-            <p>
-                We do this through our open-source <a href="https://docs.bluethroatlabs.com" target="_blank" rel="noopener noreferrer">TEE Security Handbook</a>, and our client work: audits, architecture reviews, and hands-on security consulting for teams shipping enclave-heavy systems.
-            </p>
+      <div class="logo">
+        <svg viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M29.1829 55.5V41.439C29.1829 40.195 27.4709 39.8564 26.9973 41.0066L14.116 70.5152C13.6212 71.7169 15.2059 72.6729 16.0382 71.6748L28.9194 56.2272C29.0896 56.0231 29.1829 55.7657 29.1829 55.5Z"
+            fill="#FAFAFA"
+          />
+          <path
+            d="M56.139 28.2957L32.5606 52.9574C31.853 53.6975 30.6042 53.1967 30.6042 52.1726V8.86248C30.6042 7.9489 31.5926 7.45848 32.3048 7.87399C32.5152 7.99681 32.6826 8.18177 32.8738 8.33294L55.8776 26.5271C56.0688 26.6782 56.2648 26.8377 56.3613 27.0615C56.5371 27.4697 56.4617 27.9581 56.139 28.2957Z"
+            fill="#FAFAFA"
+          />
+          <path
+            d="M0.64677 0.10718C0.95103 -0.0364659 1.30309 0.0400312 1.63009 0.119271L27.5562 6.40183C27.8832 6.48107 28.235 6.48661 28.5384 6.63195C28.9203 6.81487 29.184 7.20498 29.184 7.65669V37.6784C29.184 38.4841 28.4 38.9807 27.7128 38.7662C27.4135 38.6727 27.2106 38.4089 27.0247 38.1564L0.673573 2.37332C0.487641 2.12084 0.243191 1.90502 0.107603 1.6223C-0.159928 1.06445 0.090576 0.369767 0.64677 0.10718Z"
+            fill="#FAFAFA"
+          />
+          <path
+            d="M60.5189 5.82445L58.9106 24.9753C58.7722 25.7809 57.886 26.1427 57.2377 25.7769C57.0194 25.6538 56.8465 25.4635 56.6489 25.3093L40.9824 13.0805C40.7849 12.9263 40.5816 12.7633 40.4836 12.5327C40.2253 11.925 40.5465 11.1782 41.2382 10.9936L59.1068 4.53503C59.9068 4.32151 60.659 5.00839 60.5189 5.82445Z"
+            fill="#FAFAFA"
+          />
+          <path
+            d="M61.2287 14.9594L61.9402 5.75853C62.07 5.01962 62.8422 4.64188 63.48 4.89872C63.7187 4.99485 63.9186 5.16764 64.1396 5.29952L71.2806 9.56163C71.5015 9.69351 71.7298 9.83402 71.8563 10.0581C72.1299 10.5429 72.0019 11.1686 71.5655 11.5088C71.3421 11.6829 71.0625 11.7689 70.8126 11.9022L63.0474 16.0437C62.7975 16.177 62.5326 16.3124 62.2504 16.2887C61.6159 16.2356 61.1084 15.6439 61.2287 14.9594Z"
+            fill="#FAFAFA"
+          />
+        </svg>
+      </div>
 
-            <div class="button-group">
-                <a href="https://zcal.co/bluethroat-labs/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                    </svg>
-                    Talk to us
-                </a>
-                <a href="mailto:saxenism@bluethroatlabs.com" class="btn btn-secondary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                        <polyline points="22,6 12,13 2,6"/>
-                    </svg>
-                    Write to us
-                </a>
-            </div>
-        </section>
-
-        <!-- Mission -->
-        <section id="mission">
-            <h2>II. Our Mission</h2>
-            <p>
-                At Bluethroat Labs, our mission is to accelerate the security maturity of Trusted Execution Environments (TEEs) in Web3. The smart contract ecosystem only became meaningfully safer once vulnerable patterns and hard-earned lessons were openly documented and best practices were widely internalized. Before that, security knowledge stayed trapped in isolated "security islands," slowing progress while attackers only needed to be right once.
-            </p>
-            <p>
-                Today, the Web3 TEE landscape feels like a rewind to those early days: powerful tech, high stakes, and not enough shared security foundations. Bluethroat Labs exists to break this cycle.
-            </p>
-            <p>
-                We identify, document, and openly share TEE failure modes, vulnerable patterns, and risky architectural assumptions through our living <a href="https://docs.bluethroatlabs.com" target="_blank" rel="noopener noreferrer">TEE Security Handbook</a>. In parallel, we work directly with teams through audits, architecture reviews, and hands-on guidance to help them design and ship robust, production-ready systems.
-            </p>
-            <p>
-                Client engagements sustainably fund our public-good research so security insights reach the entire ecosystem faster. By bridging private expertise with open knowledge, we help the Web3 TEE space level up securely, together.
-            </p>
-        </section>
-
-        <!-- Work -->
-        <section id="work">
-            <h2>III. Our Work</h2>
-            <p>
-                We do three kinds of work. One is public, to raise the baseline for the entire ecosystem. The others are private, where we help teams find and fix real issues before attackers do.
-            </p>
-            <div class="work-list">
-                <div class="work-item">
-                    <h3>The TEE Security Handbook</h3>
-                    <p>Our open-source public good. A living handbook that documents TEE failure modes, vulnerable patterns, and practical guidance for safely designing and deploying TEE-heavy Web3 systems.</p>
-                </div>
-                <div class="work-item">
-                    <h3>Confidential Bug Bounty Work</h3>
-                    <p>We do ongoing, private vulnerability research across TEE-backed protocols. Details stay confidential by default, but the security lessons and patterns eventually flow back into the ecosystem through the Handbook.</p>
-                </div>
-                <div class="work-item">
-                    <h3>TEE Vulnerability Reasoning LLM</h3>
-                    <p>We are building a specialized LLM agent designed to reason about vulnerabilities in Web3 protocols that leverage TEEs in different roles and architectures. The goal is to accelerate threat modeling, surface risky assumptions early, and help teams converge on safer designs faster.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team -->
-        <section id="team">
-            <h2>IV. Our Team</h2>
-            <p>
-                We are a small but dedicated team of researchers and builders, united by a passion for security and a commitment to making TEE-backed systems safer.
-            </p>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="team-avatar">RS</div>
-                    <h4>Rahul Saxena</h4>
-                    <p>Founder · ex-ZKSync</p>
-                </div>
-                <div class="team-member">
-                    <div class="team-avatar">TG</div>
-                    <h4>Tanmay Goel</h4>
-                    <p>Researcher · ex-NVIDIA</p>
-                </div>
-                <div class="team-member">
-                    <div class="team-avatar">AG</div>
-                    <h4>Abhimanyu Gupta</h4>
-                    <p>Researcher · Malware Analyst</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Join Us -->
-        <section id="join">
-            <h2>V. Join Us</h2>
-            <blockquote>
-                We're always looking for people who take security seriously and enjoy going deep.
-            </blockquote>
-            <p>
-                If you have real experience with TEEs, in Web3 or outside it, or you're the kind of person who likes tinkering, breaking systems, and learning new security paradigms, we'd love to hear from you.
-            </p>
-            <p>
-                Email us at <a href="mailto:saxenism@bluethroatlabs.com"><strong>saxenism@bluethroatlabs.com</strong></a> with a short intro and what you've been working on.
-            </p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-links">
-            <a href="mailto:saxenism@bluethroatlabs.com">Email</a>
-            <span>—</span>
-            <a href="https://x.com/bluethroat_labs" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
-        </div>
-        <p class="copyright">© 2025 Bluethroat Labs</p>
-    </footer>
-
-    <script>
-        // Theme toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const html = document.documentElement;
-
-        // Check for saved theme preference or default to dark
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        html.setAttribute('data-theme', savedTheme);
-        updateThemeButton(savedTheme);
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeButton(newTheme);
-        });
-
-        function updateThemeButton(theme) {
-            if (theme === 'dark') {
-                themeIcon.textContent = '☀';
-                themeToggle.innerHTML = '<span id="themeIcon">☀</span> light mode';
-            } else {
-                themeIcon.textContent = '☾';
-                themeToggle.innerHTML = '<span id="themeIcon">☾</span> dark mode';
-            }
-        }
-
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
+      <div class="coming-soon">
+        <p>WEBSITE</p>
+        <p>OUT</p>
+        <p class="hide-mobile"></p>
+        <p class="hide-mobile"></p>
+        <p>07 - 03 - 26</p>
+      </div>
+    </div>
+  </body>
 </html>
